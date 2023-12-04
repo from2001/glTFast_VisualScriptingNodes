@@ -27,28 +27,33 @@ Open "Edit - Project Settings - Package Manager" on your Unity project.
 
 Add Scoped Registories and click "Apply".
 
-Name: `OpenUPM`  
-URL: `https://package.openupm.com`  
-Scopes:  
-`com.cysharp.unitask`  
-`com.from2001.gltfast-visualscripting-nodes`  
-`com.openupm`  
+Name: `OpenUPM`
+URL: `https://package.openupm.com`
+Scopes:
+`com.cysharp.unitask`
+`com.from2001.gltfast-visualscripting-nodes`
+`com.openupm`
 
-<!--
-![Project Settings](https://github.com/from2001/VRM_VisualScriptingNodes/assets/387880/595b1d91-4435-4195-9b6d-1ca6b43113ce)
--->
+![Project Settings](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/dd5a5f9c-47fc-421c-b262-c27702ce882b)
 
 ### 2. Install glTFast Visual Scripting Node Package with Package Manager
 
-<!--
-![Package Manager](https://github.com/from2001/VRM_VisualScriptingNodes/assets/387880/2809ed0b-61a8-47d9-bdb0-24335ac60163)
--->
+![Package Manager](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/73f12fe8-164a-4774-9e76-27771b447186)
 
 ## How to Use
 
 Notice: Check "Coroutine" in the "On Start Event" triger node.
 
+## Samples
+
+![Samples](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/db01dee5-401a-4ee4-9d00-6981ed37754c)
+
 ## ToDo
 
 - Make usage samples
 - implement Cache feature
+
+## Repositories
+
+- [GitHub](https://github.com/from2001/glTFast_VisualScriptingNodes/)
+- [OpenUPM](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/)
