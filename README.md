@@ -46,6 +46,9 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 
 ## Samples
 
+1. Load glb model
+2. Load glb model and rotate
+
 ![Samples](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/db01dee5-401a-4ee4-9d00-6981ed37754c)
 
 ## ToDo

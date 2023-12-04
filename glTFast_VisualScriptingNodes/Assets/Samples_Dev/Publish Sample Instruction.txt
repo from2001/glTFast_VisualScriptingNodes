@@ -1,0 +1,5 @@
+Samples are needed to be copied to
+    Packages/com.from2001.gltfast-visualscripting-nodes/Samples~
+
+* The Samples~ directory is hidden in Unity editor
+
