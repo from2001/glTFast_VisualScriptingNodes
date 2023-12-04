@@ -1,0 +1,33 @@
+{
+  "name": "com.from2001.gltfast-visualscripting-nodes",
+  "version": "0.0.1",
+  "displayName": "glTFast Visual Scripting Nodes",
+  "description": "Unity Visual Scripting node library for glTFast",
+  "unity": "2021.3",
+  "documentationUrl": "https://github.com/from2001/glTFast_VisualScriptingNodes",
+  "changelogUrl": "",
+  "licensesUrl": "https://github.com/from2001/glTFast_VisualScriptingNodes/blob/main/LICENSE",
+  "dependencies": {
+    "com.unity.visualscripting": "1.9.1",
+    "com.unity.render-pipelines.universal": "10.10.1",
+    "com.cysharp.unitask": "2.4.1"
+  },
+  "keywords": [
+    "Unity",
+    "glTF",
+    "glb",
+    "Visual Scripting"
+  ],
+  "author": {
+    "name": "from2001",
+    "email": "from2001@hotmail.com",
+    "url": "https://github.com/from2001/"
+  },
+  "samples": [
+    {
+      "displayName": "Usage samples",
+      "description": "Contains sample Visual Scripting Graphs for glTFast Node",
+      "path": "Samples~/Sample1"
+    }
+  ]
+}
