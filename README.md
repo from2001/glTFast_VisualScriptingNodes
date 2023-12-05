@@ -51,9 +51,14 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 
 ![Samples](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/db01dee5-401a-4ee4-9d00-6981ed37754c)
 
+## Vision OS Support
+
+Shaders are replaced with `Universal Render Pipeline/Lit` shader
+
 ## ToDo
 
-- Make usage samples
+- ~~Make usage samples~~
+- ~~VisionOS Support~~
 - implement Cache feature
 
 ## Repositories
