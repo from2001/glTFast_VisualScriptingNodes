@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using GLTFast;
+using VisualScriptingNodes;
 
 namespace GltfastVisualScriptingNodes
 {
@@ -32,7 +33,6 @@ namespace GltfastVisualScriptingNodes
 
             glTF_URL = ValueInput<string>("glTF/glb URL", "");
             result = ValueOutput<GameObject>("Game Object", (flow) => resultValue);
-
         }
 
         private IEnumerator Enter(Flow flow)
@@ -42,6 +42,9 @@ namespace GltfastVisualScriptingNodes
             UniTask.Create(async () => { gltfInstance = await LoadGltfFunc(url); }).Forget();
             yield return new WaitUntil(() => gltfInstance);
             resultValue = gltfInstance.gameObject;
+
+            if (Utils.IsVisionOS()) Utils.ChangeShadersWithTexture(resultValue, "Universal Render Pipeline/Lit", "baseColorTexture", "_BaseMap");
+
             yield return outputTrigger;
         }
 
@@ -51,7 +54,18 @@ namespace GltfastVisualScriptingNodes
             var gltf = gltfInstance.AddComponent<GltfAsset>();
             gltf.Url = URL;
             while (!gltf.IsDone) await UniTask.Yield();
+
+            //Wait until gltf objects are loaded
+            if (gltfInstance.transform.childCount > 0)
+            {
+                while (gltfInstance.transform.GetChild(0).name == "New Game Object")
+                {
+                    await UniTask.WaitForFixedUpdate();
+                    await UniTask.Yield();
+                }
+            }
             return gltfInstance;
         }
+
     }
 }
