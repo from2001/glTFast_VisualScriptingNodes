@@ -51,10 +51,6 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 
 ![Samples](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/db01dee5-401a-4ee4-9d00-6981ed37754c)
 
-## Vision OS Support
-
-Shaders are replaced with `Universal Render Pipeline/Lit` shader
-
 ## ToDo
 
 - ~~Make usage samples~~
@@ -65,3 +61,16 @@ Shaders are replaced with `Universal Render Pipeline/Lit` shader
 
 - [GitHub](https://github.com/from2001/glTFast_VisualScriptingNodes/)
 - [OpenUPM](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/)
+
+## Others
+
+### Vision OS Support
+
+Shaders are replaced with `Universal Render Pipeline/Lit` shader on ViisonOS
+
+### Avoid Multiple scripted importers error
+
+If you want to use [glTFast Visual Scripting Nodes](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/) and [VRM Visual Scripting Nodes](https://openupm.com/packages/com.from2001.vrm-visualscripting-nodes/) in a same project, add two Scripting Define Symbols in `Project Settings` > `Player` > `Other Settings` > `Script Compilation` > `Scripting Define Symbols`
+
+`UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER`
+`UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER`
