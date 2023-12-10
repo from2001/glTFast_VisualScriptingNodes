@@ -85,4 +85,5 @@ crashlytics-build.properties
 # For this specific project
 /[Aa]ssets/temp/*
 /[Aa]ssets/temp.meta
-
+/[Aa]ssets/_temp/*
+/[Aa]ssets/_temp.meta
