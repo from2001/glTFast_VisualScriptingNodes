@@ -4,6 +4,8 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using GLTFast;
 using VisualScriptingNodes;
+using UnityEngine.Networking;
+using System;
 
 namespace GltfastVisualScriptingNodes
 {
@@ -39,7 +41,7 @@ namespace GltfastVisualScriptingNodes
         {
             string url = flow.GetValue<string>(glTF_URL);
             GameObject gltfInstance = null;
-            UniTask.Create(async () => { gltfInstance = await LoadGltfFunc(url); }).Forget();
+            UniTask.Create(async () => { gltfInstance = await LoadGlbWithURL(url); }).Forget();
             yield return new WaitUntil(() => gltfInstance);
             resultValue = gltfInstance.gameObject;
 
@@ -47,6 +49,31 @@ namespace GltfastVisualScriptingNodes
 
             yield return outputTrigger;
         }
+
+        private async UniTask<GameObject> LoadGlbWithURL(string URL)
+        {
+            GameObject gltfInstance = new("glTFast");
+            byte[] GlbBytes = null;
+            UnityWebRequest request = UnityWebRequest.Get(URL);
+            await request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                GlbBytes = request.downloadHandler.data;
+
+                var gltf = new GltfImport();
+                bool success = await gltf.LoadGltfBinary(
+                    GlbBytes,
+                    // The URI of the original data is important for resolving relative URIs within the glTF
+                    new Uri(URL)
+                    );
+                if (success)
+                {
+                    success = await gltf.InstantiateMainSceneAsync(gltfInstance.transform);
+                }
+            }
+            return gltfInstance;
+        }
+
 
         private async UniTask<GameObject> LoadGltfFunc(string URL)
         {
@@ -66,6 +93,11 @@ namespace GltfastVisualScriptingNodes
             }
             return gltfInstance;
         }
+
+
+
+
+
 
     }
 }
