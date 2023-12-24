@@ -44,7 +44,7 @@ namespace GltfastVisualScriptingNodes
             string url = flow.GetValue<string>(glTF_URL);
             GameObject gltfInstance = null;
             UniTask.Create(async () =>
-            {  
+            {
                 gltfInstance = await LoadGltfWithURL(url);
             }).Forget();
             yield return new WaitUntil(() => gltfInstance);
@@ -62,15 +62,24 @@ namespace GltfastVisualScriptingNodes
             {
                 GlbBytes = request.downloadHandler.data;
                 GLTFast.Materials.IMaterialGenerator materialGenerator = Utils.IsVisionOS() ? new PBRGraphMaterialGenerator(new MemoryStream(GlbBytes)) : null;
-                var gltf = new GltfImport(null, null, materialGenerator, null);
-                
-                bool success = await gltf.LoadGltfBinary(
+                var gltfImport = new GltfImport(null, null, materialGenerator, null);
+                var instantiator = new GameObjectInstantiator(gltfImport, gltfInstance.transform);
+
+                bool success = await gltfImport.LoadGltfBinary(
                     GlbBytes,
                     new Uri(URL)
                     );
                 if (success)
                 {
-                    success = await gltf.InstantiateMainSceneAsync(gltfInstance.transform);
+                    success = await gltfImport.InstantiateMainSceneAsync(instantiator);
+                    if (success)
+                    {
+                        var legacyAnimation = instantiator.SceneInstance.LegacyAnimation;
+                        if (legacyAnimation != null)
+                        {
+                            legacyAnimation.Play();
+                        }
+                    }
                 }
             }
             return gltfInstance;
