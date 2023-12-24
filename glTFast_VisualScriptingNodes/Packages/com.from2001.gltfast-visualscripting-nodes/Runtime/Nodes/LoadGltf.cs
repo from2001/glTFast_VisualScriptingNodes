@@ -6,6 +6,8 @@ using GLTFast;
 using VisualScriptingNodes;
 using UnityEngine.Networking;
 using System;
+using UnityEditor;
+using System.IO;
 
 namespace GltfastVisualScriptingNodes
 {
@@ -41,16 +43,16 @@ namespace GltfastVisualScriptingNodes
         {
             string url = flow.GetValue<string>(glTF_URL);
             GameObject gltfInstance = null;
-            UniTask.Create(async () => { gltfInstance = await LoadGlbWithURL(url); }).Forget();
+            UniTask.Create(async () =>
+            {  
+                gltfInstance = await LoadGltfWithURL(url);
+            }).Forget();
             yield return new WaitUntil(() => gltfInstance);
             resultValue = gltfInstance.gameObject;
-
-            if (Utils.IsVisionOS()) Utils.ChangeShadersWithTexture(resultValue, "Universal Render Pipeline/Lit", "baseColorTexture", "_BaseMap");
-
             yield return outputTrigger;
         }
 
-        private async UniTask<GameObject> LoadGlbWithURL(string URL)
+        private async UniTask<GameObject> LoadGltfWithURL(string URL)
         {
             GameObject gltfInstance = new("glTFast");
             byte[] GlbBytes = null;
@@ -59,11 +61,11 @@ namespace GltfastVisualScriptingNodes
             if (request.result == UnityWebRequest.Result.Success)
             {
                 GlbBytes = request.downloadHandler.data;
-
-                var gltf = new GltfImport();
+                GLTFast.Materials.IMaterialGenerator materialGenerator = Utils.IsVisionOS() ? new PBRGraphMaterialGenerator(new MemoryStream(GlbBytes)) : null;
+                var gltf = new GltfImport(null, null, materialGenerator, null);
+                
                 bool success = await gltf.LoadGltfBinary(
                     GlbBytes,
-                    // The URI of the original data is important for resolving relative URIs within the glTF
                     new Uri(URL)
                     );
                 if (success)
@@ -73,31 +75,6 @@ namespace GltfastVisualScriptingNodes
             }
             return gltfInstance;
         }
-
-
-        private async UniTask<GameObject> LoadGltfFunc(string URL)
-        {
-            GameObject gltfInstance = new("glTFast");
-            var gltf = gltfInstance.AddComponent<GltfAsset>();
-            gltf.Url = URL;
-            while (!gltf.IsDone) await UniTask.Yield();
-
-            //Wait until gltf objects are loaded
-            if (gltfInstance.transform.childCount > 0)
-            {
-                while (gltfInstance.transform.GetChild(0).name == "New Game Object")
-                {
-                    await UniTask.WaitForFixedUpdate();
-                    await UniTask.Yield();
-                }
-            }
-            return gltfInstance;
-        }
-
-
-
-
-
 
     }
 }
