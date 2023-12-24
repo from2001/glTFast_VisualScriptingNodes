@@ -28,10 +28,10 @@ namespace GltfastVisualScriptingNodes
         }
 
         public override Material GenerateMaterial(
-            GLTFast.Schema.Material gltfMaterial,
+            GLTFast.Schema.MaterialBase gltfMaterial,
             GLTFast.IGltfReadable gltf,
             bool pointsSupport = false
-        )
+            )
         {
             Material material = _materialsByUnityGLTF[gltfMaterial.name];
             return material;

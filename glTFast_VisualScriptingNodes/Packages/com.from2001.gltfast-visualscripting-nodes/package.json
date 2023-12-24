@@ -11,7 +11,7 @@
     "com.unity.visualscripting": "1.9.1",
     "com.unity.render-pipelines.universal": "10.10.1",
     "com.cysharp.unitask": "2.4.1",
-    "com.unity.cloud.gltfast": "5.2.0"
+    "com.unity.cloud.gltfast": "6.0.1"
   },
   "keywords": [
     "Unity",
