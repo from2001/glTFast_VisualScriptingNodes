@@ -56,6 +56,8 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 - ~~Make usage samples~~
 - ~~VisionOS Support~~
 - implement Cache feature
+- add target Gameobject as an input port
+- add size adjustment option 
 
 ## Repositories
 
@@ -66,7 +68,7 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 
 ### Vision OS Support
 
-Shaders are replaced with `Universal Render Pipeline/Lit` shader on ViisonOS
+Materials are generated with UnityGLTF routine with `UnityGLTF/PBRGraph` shader on ViisonOS until glTFast shaders support Vision OS.
 
 ### Avoid Multiple scripted importers error
 
