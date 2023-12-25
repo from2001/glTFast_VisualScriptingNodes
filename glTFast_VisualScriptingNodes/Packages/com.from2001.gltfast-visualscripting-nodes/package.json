@@ -11,7 +11,9 @@
     "com.unity.visualscripting": "1.9.1",
     "com.unity.render-pipelines.universal": "10.10.1",
     "com.cysharp.unitask": "2.4.1",
-    "com.unity.cloud.gltfast": "6.0.1"
+    "com.unity.cloud.gltfast": "6.0.1",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.modules.imageconversion": "1.0.0"
   },
   "keywords": [
     "Unity",
