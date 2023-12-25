@@ -4,6 +4,10 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using GLTFast;
 using VisualScriptingNodes;
+using UnityEngine.Networking;
+using System;
+using UnityEditor;
+using System.IO;
 
 namespace GltfastVisualScriptingNodes
 {
@@ -39,29 +43,43 @@ namespace GltfastVisualScriptingNodes
         {
             string url = flow.GetValue<string>(glTF_URL);
             GameObject gltfInstance = null;
-            UniTask.Create(async () => { gltfInstance = await LoadGltfFunc(url); }).Forget();
+            UniTask.Create(async () =>
+            {
+                gltfInstance = await LoadGltfWithURL(url);
+            }).Forget();
             yield return new WaitUntil(() => gltfInstance);
             resultValue = gltfInstance.gameObject;
-
-            if (Utils.IsVisionOS()) Utils.ChangeShadersWithTexture(resultValue, "Universal Render Pipeline/Lit", "baseColorTexture", "_BaseMap");
-
             yield return outputTrigger;
         }
 
-        private async UniTask<GameObject> LoadGltfFunc(string URL)
+        private async UniTask<GameObject> LoadGltfWithURL(string URL)
         {
             GameObject gltfInstance = new("glTFast");
-            var gltf = gltfInstance.AddComponent<GltfAsset>();
-            gltf.Url = URL;
-            while (!gltf.IsDone) await UniTask.Yield();
-
-            //Wait until gltf objects are loaded
-            if (gltfInstance.transform.childCount > 0)
+            byte[] GlbBytes = null;
+            UnityWebRequest request = UnityWebRequest.Get(URL);
+            await request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                while (gltfInstance.transform.GetChild(0).name == "New Game Object")
+                GlbBytes = request.downloadHandler.data;
+                GLTFast.Materials.IMaterialGenerator materialGenerator = Utils.IsVisionOS() ? new PBRGraphMaterialGenerator(new MemoryStream(GlbBytes)) : null;
+                var gltfImport = new GltfImport(null, null, materialGenerator, null);
+                var instantiator = new GameObjectInstantiator(gltfImport, gltfInstance.transform);
+
+                bool success = await gltfImport.LoadGltfBinary(
+                    GlbBytes,
+                    new Uri(URL)
+                    );
+                if (success)
                 {
-                    await UniTask.WaitForFixedUpdate();
-                    await UniTask.Yield();
+                    success = await gltfImport.InstantiateMainSceneAsync(instantiator);
+                    if (success)
+                    {
+                        var legacyAnimation = instantiator.SceneInstance.LegacyAnimation;
+                        if (legacyAnimation != null)
+                        {
+                            legacyAnimation.Play();
+                        }
+                    }
                 }
             }
             return gltfInstance;

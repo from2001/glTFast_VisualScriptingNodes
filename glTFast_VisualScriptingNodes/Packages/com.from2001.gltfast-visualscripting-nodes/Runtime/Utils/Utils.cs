@@ -19,19 +19,14 @@ namespace VisualScriptingNodes
         {
             //When operatingSystem is "visionOS", return true
             if (SystemInfo.operatingSystem.Contains("visionOS")) return true;
-
-            //When VolumeCamera exists in scene, return true
-            foreach (GameObject obj in GetAllObjectsInScene())
-            {
-                Component[] components = obj.GetComponents<Component>();
-                foreach (Component component in components)
-                {
-                    if (component.GetType().Name=="VolumeCamera") return true;
-                }
-            }
-
+            if (Application.platform == RuntimePlatform.VisionOS) return true;
+#if UNITY_VISIONOS
+            return true;
+#else
             return false;
+#endif
         }
+
 
         /// <summary>
         /// Return all GameObjects in scene.
