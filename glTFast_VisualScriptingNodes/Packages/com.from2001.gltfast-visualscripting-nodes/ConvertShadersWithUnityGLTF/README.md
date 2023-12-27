@@ -11,4 +11,15 @@ In VisionOS build setting, glTFast Materials will be generated with
 /Runtime/Utils/PBRGraphMaterialGenerator.cs
 which uses UnityGLTF routine.
 
-Code modification
+## Code modification  
+These codes are deleted to avoid Multiple scripted importers error
+
+org.khronos.unitygltf@e8c3e656f2/Editor/Scripts/GLTFImporter.cs
+```cs
+#if !ANOTHER_IMPORTER_HAS_HIGHER_PRIORITY && !UNITYGLTF_FORCE_DEFAULT_IMPORTER_OFF
+#define ENABLE_DEFAULT_GLB_IMPORTER
+#endif
+#if UNITYGLTF_FORCE_DEFAULT_IMPORTER_ON
+#define ENABLE_DEFAULT_GLB_IMPORTER
+#endif
+```
