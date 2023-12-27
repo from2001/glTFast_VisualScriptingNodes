@@ -56,8 +56,8 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 - ~~Make usage samples~~
 - ~~VisionOS Support~~
 - implement Cache feature
-- add target Gameobject as an input port
-- add size adjustment option 
+- ~~add target Gameobject as an input port~~
+- ~~add size adjustment option~~
 
 ## Repositories
 
