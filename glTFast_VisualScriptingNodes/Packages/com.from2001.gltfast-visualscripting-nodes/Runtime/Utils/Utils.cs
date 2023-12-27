@@ -53,6 +53,29 @@ namespace VisualScriptingNodes
         }
 
 
+        public static Bounds CalculateBounds(GameObject obj)
+        {
+            var renderers = obj.GetComponentsInChildren<Renderer>();
+            if (renderers.Length == 0) return new Bounds(obj.transform.position, Vector3.zero);
+
+            var bounds = renderers[0].bounds;
+            foreach (Renderer renderer in renderers)
+            {
+                bounds.Encapsulate(renderer.bounds);
+            }
+            return bounds;
+        }
+
+        public static void FitToUnitSize(GameObject obj)
+        {
+            Bounds bounds = CalculateBounds(obj);
+            float maxDimension = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
+            float scaleFactor = 1f / maxDimension;
+
+            obj.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        }
+
+
 
         /// <summary>
         /// Change all shaders of GameObject to new one.
