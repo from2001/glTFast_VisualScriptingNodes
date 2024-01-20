@@ -10,6 +10,7 @@
 ### Features
 
 - Load glTF/glb models with URL
+- File cache
 
 ## Install Option A: via OpenUPM command-line interface
 
