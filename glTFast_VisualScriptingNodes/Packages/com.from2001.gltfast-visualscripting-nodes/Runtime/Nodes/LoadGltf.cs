@@ -6,8 +6,9 @@ using GLTFast;
 using VisualScriptingNodes;
 using UnityEngine.Networking;
 using System;
-using UnityEditor;
 using System.IO;
+using STYLY.Http;
+using STYLY.Http.Service;
 
 namespace GltfastVisualScriptingNodes
 {
@@ -71,11 +72,13 @@ namespace GltfastVisualScriptingNodes
             byte[] GlbBytes = null;
             try
             {
-                UnityWebRequest request = UnityWebRequest.Get(URL);
-                await request.SendWebRequest();
-                if (request.result == UnityWebRequest.Result.Success)
+                HttpResponse httpResponse = await Http.Get(URL)
+                                .UseCache(CacheType.UseCacheAlways)
+                                .OnError(response => Debug.Log(response.StatusCode))
+                                .SendAsync();
+                if (httpResponse.IsSuccessful)
                 {
-                    GlbBytes = request.downloadHandler.data;
+                    GlbBytes = httpResponse.Bytes;
                     GLTFast.Materials.IMaterialGenerator materialGenerator = Utils.IsVisionOS() ? new PBRGraphMaterialGenerator(new MemoryStream(GlbBytes)) : null;
                     var gltfImport = new GltfImport(null, null, materialGenerator, null);
                     var instantiator = new GameObjectInstantiator(gltfImport, gltfInstance.transform);
