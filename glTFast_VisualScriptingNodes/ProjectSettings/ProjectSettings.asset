@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: from2001
   productName: glTFast_VisualScriptingNodes
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -161,8 +161,11 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.glTFast-VisualScriptingNodes
+    Android: com.DefaultCompany.glTFast_VisualScriptingNodes
+    Standalone: com.from2001.glTFast-VisualScriptingNodes
+    VisionOS: com.DefaultCompany.glTFast-VisualScriptingNodes
     iPhone: com.DefaultCompany.glTFast-VisualScriptingNodes
+    tvOS: com.DefaultCompany.glTFast-VisualScriptingNodes
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -879,8 +882,19 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
-  additionalCompilerArguments: {}
+  scriptingDefineSymbols:
+    Android: GLTFAST_EDITOR_IMPORT_OFF
+    Server: GLTFAST_EDITOR_IMPORT_OFF
+    Standalone: GLTFAST_EDITOR_IMPORT_OFF
+    VisionOS: GLTFAST_EDITOR_IMPORT_OFF
+    WebGL: GLTFAST_EDITOR_IMPORT_OFF
+    iPhone: GLTFAST_EDITOR_IMPORT_OFF
+    tvOS: GLTFAST_EDITOR_IMPORT_OFF
+  additionalCompilerArguments:
+    Android: []
+    Server:
+    - GLTFAST_EDITOR_IMPORT_OFF
+    Standalone: []
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
