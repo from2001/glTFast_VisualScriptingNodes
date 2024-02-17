@@ -161,11 +161,11 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DefaultCompany.glTFast_VisualScriptingNodes
+    Android: com.from2001.glTFast_VisualScriptingNodes
     Standalone: com.from2001.glTFast-VisualScriptingNodes
-    VisionOS: com.DefaultCompany.glTFast-VisualScriptingNodes
-    iPhone: com.DefaultCompany.glTFast-VisualScriptingNodes
-    tvOS: com.DefaultCompany.glTFast-VisualScriptingNodes
+    VisionOS: com.from2001.glTFast-VisualScriptingNodes
+    iPhone: com.from2001.glTFast-VisualScriptingNodes
+    tvOS: com.from2001.glTFast-VisualScriptingNodes
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -883,13 +883,13 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: GLTFAST_EDITOR_IMPORT_OFF
-    Server: GLTFAST_EDITOR_IMPORT_OFF
-    Standalone: GLTFAST_EDITOR_IMPORT_OFF
-    VisionOS: GLTFAST_EDITOR_IMPORT_OFF
-    WebGL: GLTFAST_EDITOR_IMPORT_OFF
-    iPhone: GLTFAST_EDITOR_IMPORT_OFF
-    tvOS: GLTFAST_EDITOR_IMPORT_OFF
+    Android: GLTFAST_EDITOR_IMPORT_OFF;UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    Server: GLTFAST_EDITOR_IMPORT_OFF;UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    Standalone: GLTFAST_EDITOR_IMPORT_OFF;UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    VisionOS: GLTFAST_EDITOR_IMPORT_OFF;UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    WebGL: GLTFAST_EDITOR_IMPORT_OFF;UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    iPhone: GLTFAST_EDITOR_IMPORT_OFF;UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    tvOS: GLTFAST_EDITOR_IMPORT_OFF;UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
   additionalCompilerArguments:
     Android: []
     Server:

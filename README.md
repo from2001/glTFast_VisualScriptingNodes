@@ -75,10 +75,3 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 ### Vision OS Support
 
 Materials are generated with UnityGLTF routine with `UnityGLTF/PBRGraph` shader on ViisonOS until glTFast shaders support Vision OS.
-
-### Avoid Multiple scripted importers error
-
-If you want to use [glTFast Visual Scripting Nodes](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/) and [VRM Visual Scripting Nodes](https://openupm.com/packages/com.from2001.vrm-visualscripting-nodes/) in a same project, add two Scripting Define Symbols in `Project Settings` > `Player` > `Other Settings` > `Script Compilation` > `Scripting Define Symbols`
-
-`UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER`
-`UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER`
