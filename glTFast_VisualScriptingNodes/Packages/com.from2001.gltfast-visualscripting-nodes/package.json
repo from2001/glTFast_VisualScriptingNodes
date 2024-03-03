@@ -14,7 +14,8 @@
     "com.unity.cloud.gltfast": "6.0.1",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.modules.imageconversion": "1.0.0",
-    "com.styly.webrequest-visualscripting-nodes": "0.0.4"
+    "com.styly.webrequest-visualscripting-nodes": "0.0.4",
+    "org.khronos.unitygltf": "2.9.0-rc"
   },
   "keywords": [
     "Unity",

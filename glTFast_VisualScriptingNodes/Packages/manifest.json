@@ -36,7 +36,8 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "org.khronos.unitygltf": "2.9.0-rc"
   },
   "scopedRegistries": [
     {
@@ -44,7 +45,8 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.cysharp.unitask",
-        "com.styly.webrequest-visualscripting-nodes"
+        "com.styly.webrequest-visualscripting-nodes",
+        "org.khronos.unitygltf"
       ]
     }
   ]

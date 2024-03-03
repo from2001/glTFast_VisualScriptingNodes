@@ -18,7 +18,8 @@
         "com.unity.cloud.gltfast": "6.0.1",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.modules.imageconversion": "1.0.0",
-        "com.styly.webrequest-visualscripting-nodes": "0.0.4"
+        "com.styly.webrequest-visualscripting-nodes": "0.0.4",
+        "org.khronos.unitygltf": "2.9.0-rc"
       }
     },
     "com.styly.webrequest-visualscripting-nodes": {
@@ -167,7 +168,7 @@
     },
     "com.unity.searcher": {
       "version": "4.9.2",
-      "depth": 3,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -181,7 +182,7 @@
     },
     "com.unity.shadergraph": {
       "version": "14.0.10",
-      "depth": 2,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "14.0.10",
@@ -248,6 +249,17 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "org.khronos.unitygltf": {
+      "version": "2.9.0-rc",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.shadergraph": "10.0.0"
+      },
+      "url": "https://package.openupm.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
