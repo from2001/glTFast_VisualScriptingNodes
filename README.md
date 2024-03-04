@@ -21,8 +21,8 @@ npm install -g openupm-cli
 # Go to your unity project directory
 cd YOUR_UNITY_PROJECT_DIR
 
-# Install package:
-openupm add com.from2001.gltfast-visualscripting-nodes
+# Install package: Use -f option to avoid install error  
+openupm add -f com.from2001.gltfast-visualscripting-nodes
 ```
 
 ## Install Option B: via Unity package manager
