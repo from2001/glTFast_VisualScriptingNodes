@@ -1,6 +1,6 @@
 {
   "name": "com.from2001.gltfast-visualscripting-nodes",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "displayName": "glTFast Visual Scripting Nodes",
   "description": "Unity Visual Scripting node library for glTFast",
   "unity": "2021.3",
@@ -17,7 +17,8 @@
     "org.khronos.unitygltf": "2.9.0-rc",
     "com.unity.cloud.draco": "5.0.2",
     "com.unity.cloud.ktx": "3.3.0",
-    "com.unity.meshopt.decompress": "0.1.0-preview.5"
+    "com.unity.meshopt.decompress": "0.1.0-preview.5",
+    "com.unity.render-pipelines.universal": "10.10.1"
   },
   "keywords": [
     "Unity",
