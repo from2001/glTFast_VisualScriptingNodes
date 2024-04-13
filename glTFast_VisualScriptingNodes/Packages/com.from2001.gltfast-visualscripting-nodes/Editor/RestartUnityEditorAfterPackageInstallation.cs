@@ -3,7 +3,9 @@ using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-// [InitializeOnLoad]
+/// <summary>
+/// Restart Unity Editor after package installation
+/// </summary>
 public class RestartUnityEditorAfterPackageInstallation
 {
     static readonly string PackageName = "com.from2001.gltfast-visualscripting-nodes";
