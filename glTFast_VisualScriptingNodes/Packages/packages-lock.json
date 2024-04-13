@@ -18,8 +18,8 @@
         "com.unity.cloud.gltfast": "6.0.1",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.modules.imageconversion": "1.0.0",
-        "com.styly.webrequest-visualscripting-nodes": "0.0.4",
-        "org.khronos.unitygltf": "2.10.1-rc",
+        "com.styly.webrequest-visualscripting-nodes": "0.0.6",
+        "org.khronos.unitygltf": "2.10.2-rc",
         "com.unity.cloud.draco": "5.0.2",
         "com.unity.cloud.ktx": "3.3.0",
         "com.unity.meshopt.decompress": "0.1.0-preview.5",
@@ -27,12 +27,12 @@
       }
     },
     "com.styly.webrequest-visualscripting-nodes": {
-      "version": "0.0.4",
+      "version": "0.0.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.cysharp.unitask": "2.4.1",
-        "com.unity.visualscripting": "1.9.1"
+        "com.unity.visualscripting": "1.8.0"
       },
       "url": "https://package.openupm.com"
     },
@@ -298,7 +298,7 @@
       "url": "https://packages.unity.com"
     },
     "org.khronos.unitygltf": {
-      "version": "2.10.1-rc",
+      "version": "2.10.2-rc",
       "depth": 1,
       "source": "registry",
       "dependencies": {
