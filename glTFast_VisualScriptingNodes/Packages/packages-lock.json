@@ -12,13 +12,14 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
+        "com.unity.burst": "1.8.13",
         "com.unity.visualscripting": "1.9.1",
         "com.cysharp.unitask": "2.4.1",
         "com.unity.cloud.gltfast": "6.0.1",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.styly.webrequest-visualscripting-nodes": "0.0.4",
-        "org.khronos.unitygltf": "2.9.0-rc",
+        "org.khronos.unitygltf": "2.10.1-rc",
         "com.unity.cloud.draco": "5.0.2",
         "com.unity.cloud.ktx": "3.3.0",
         "com.unity.meshopt.decompress": "0.1.0-preview.5",
@@ -36,7 +37,7 @@
       "url": "https://package.openupm.com"
     },
     "com.unity.burst": {
-      "version": "1.8.12",
+      "version": "1.8.13",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -297,13 +298,14 @@
       "url": "https://packages.unity.com"
     },
     "org.khronos.unitygltf": {
-      "version": "2.9.0-rc",
-      "depth": 0,
+      "version": "2.10.1-rc",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.shadergraph": "10.0.0"
+        "com.unity.shadergraph": "10.0.0",
+        "com.unity.mathematics": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
