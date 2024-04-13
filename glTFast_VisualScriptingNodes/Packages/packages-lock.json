@@ -27,8 +27,8 @@
       }
     },
     "com.styly.webrequest-visualscripting-nodes": {
-      "version": "0.0.6",
-      "depth": 1,
+      "version": "0.0.4",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.cysharp.unitask": "2.4.1",
@@ -298,8 +298,8 @@
       "url": "https://packages.unity.com"
     },
     "org.khronos.unitygltf": {
-      "version": "2.10.2-rc",
-      "depth": 1,
+      "version": "2.10.1-rc",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "2.0.0",
