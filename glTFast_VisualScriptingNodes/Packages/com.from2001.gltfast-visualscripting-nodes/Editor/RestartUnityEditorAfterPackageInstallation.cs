@@ -3,47 +3,50 @@ using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-/// <summary>
-/// Restart Unity Editor after package installation
-/// </summary>
-public class RestartUnityEditorAfterPackageInstallation
+namespace GltfastVisualScriptingNodes
 {
-    static readonly string PackageName = "com.from2001.gltfast-visualscripting-nodes";
-
-    [InitializeOnLoadMethod]
-    static void CheckNeedRestart()
+    /// <summary>
+    /// Restart Unity Editor after package installation
+    /// </summary>
+    public class RestartUnityEditorAfterPackageInstallation
     {
-        string packageVersion = GetPackageVersion(PackageName);
+        static readonly string PackageName = "com.from2001.gltfast-visualscripting-nodes";
 
-        if (EditorPrefs.GetString("VersionOf_" + PackageName, "") != packageVersion)
+        [InitializeOnLoadMethod]
+        static void CheckNeedRestart()
         {
-            EditorPrefs.SetString("VersionOf_" + PackageName, packageVersion);
-            if (EditorUtility.DisplayDialog("Restart Unity",
-                "You need to restart Unity to apply the new changes. Restart now?",
-                "Restart", "Later"))
+            string packageVersion = GetPackageVersion(PackageName);
+
+            if (EditorPrefs.GetString("VersionOf_" + PackageName, "") != packageVersion)
             {
-                // Restart Unity Editor
-                EditorApplication.OpenProject(System.Environment.CurrentDirectory);
-            }
-            else
-            {
-                // Inform the user to restart Unity manually
-                EditorUtility.DisplayDialog("Manual Restart Required",
-                    "Please close and reopen Unity to complete the update.",
-                    "OK");
+                EditorPrefs.SetString("VersionOf_" + PackageName, packageVersion);
+                if (EditorUtility.DisplayDialog("Restart Unity",
+                    "You need to restart Unity to apply the new changes. Restart now?",
+                    "Restart", "Later"))
+                {
+                    // Restart Unity Editor
+                    EditorApplication.OpenProject(System.Environment.CurrentDirectory);
+                }
+                else
+                {
+                    // Inform the user to restart Unity manually
+                    EditorUtility.DisplayDialog("Manual Restart Required",
+                        "Please close and reopen Unity to complete the update.",
+                        "OK");
+                }
             }
         }
-    }
 
-    /// <summary>
-    /// Get the version of the package
-    /// </summary>
-    /// <param name="packageName"></param>
-    /// <returns></returns>
-    static string GetPackageVersion(string packageName)
-    {
-        var request = Client.List(true, true);
-        while (!request.IsCompleted) { }
-        return request.Result.FirstOrDefault(package => package.name == packageName)?.version;
+        /// <summary>
+        /// Get the version of the package
+        /// </summary>
+        /// <param name="packageName"></param>
+        /// <returns></returns>
+        static string GetPackageVersion(string packageName)
+        {
+            var request = Client.List(true, true);
+            while (!request.IsCompleted) { }
+            return request.Result.FirstOrDefault(package => package.name == packageName)?.version;
+        }
     }
 }
