@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 
-namespace VisualScriptingNodes
+namespace GltfastVisualScriptingNodes
 {
     public class Utils : MonoBehaviour
     {
