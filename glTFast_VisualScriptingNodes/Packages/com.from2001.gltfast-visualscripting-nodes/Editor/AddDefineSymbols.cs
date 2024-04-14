@@ -1,6 +1,9 @@
 using System.Linq;
 using UnityEditor;
 
+/// <summary>
+/// Scripting Define Symbols will be added to the Player Settings on load of Unity Editor, Unity package installation, switch platform or project build.
+/// </summary>
 [InitializeOnLoad]
 class AddDefineSymbols
 {
