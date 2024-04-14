@@ -27,7 +27,7 @@
       }
     },
     "com.styly.webrequest-visualscripting-nodes": {
-      "version": "0.0.4",
+      "version": "0.0.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -298,7 +298,7 @@
       "url": "https://packages.unity.com"
     },
     "org.khronos.unitygltf": {
-      "version": "2.10.1-rc",
+      "version": "2.10.2-rc",
       "depth": 0,
       "source": "registry",
       "dependencies": {
