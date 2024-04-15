@@ -7,16 +7,17 @@ using UnityEditor.PackageManager;
 /// </summary>
 class RestartUnityEditorAfterPackageInstallation
 {
-    static readonly string PackageName = "com.from2001.gltfast-visualscripting-nodes";
-    
     [InitializeOnLoadMethod]
     static void CheckNeedRestart()
     {
-        string packageVersion = GetPackageVersion(PackageName);
+        // Get the infomation of the package of this script 
+        var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
+        string MyPackageName = MyPackageInfo.name;
+        string MyPackageVersion = GetPackageVersion(MyPackageName);
 
-        if (EditorPrefs.GetString("VersionOf_" + PackageName, "") != packageVersion)
+        if (EditorPrefs.GetString("VersionOf_" + MyPackageName, "") != MyPackageVersion)
         {
-            EditorPrefs.SetString("VersionOf_" + PackageName, packageVersion);
+            EditorPrefs.SetString("VersionOf_" + MyPackageName, MyPackageVersion);
             if (EditorUtility.DisplayDialog("Restart Unity",
                 "You need to restart Unity to apply the new changes. Restart now?",
                 "Restart", "Later"))
