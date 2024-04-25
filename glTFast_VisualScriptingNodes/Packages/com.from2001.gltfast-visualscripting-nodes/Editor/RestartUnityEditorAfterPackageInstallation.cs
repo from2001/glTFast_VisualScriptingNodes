@@ -1,23 +1,23 @@
 using System.Linq;
 using UnityEditor;
 using UnityEditor.PackageManager;
-using UnityEngine;
 
 /// <summary>
 /// Restart Unity Editor after package installation
 /// </summary>
-public class RestartUnityEditorAfterPackageInstallation
+class RestartUnityEditorAfterPackageInstallation
 {
-    static readonly string PackageName = "com.from2001.gltfast-visualscripting-nodes";
-
     [InitializeOnLoadMethod]
     static void CheckNeedRestart()
     {
-        string packageVersion = GetPackageVersion(PackageName);
+        // Get the infomation of the package of this script 
+        var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
+        string MyPackageName = MyPackageInfo.name;
+        string MyPackageVersion = GetPackageVersion(MyPackageName);
 
-        if (EditorPrefs.GetString("VersionOf_" + PackageName, "") != packageVersion)
+        if (EditorUserSettings.GetConfigValue("VersionOf_" + MyPackageName) != MyPackageVersion)
         {
-            EditorPrefs.SetString("VersionOf_" + PackageName, packageVersion);
+            EditorUserSettings.SetConfigValue("VersionOf_" + MyPackageName, MyPackageVersion);
             if (EditorUtility.DisplayDialog("Restart Unity",
                 "You need to restart Unity to apply the new changes. Restart now?",
                 "Restart", "Later"))
@@ -40,7 +40,7 @@ public class RestartUnityEditorAfterPackageInstallation
     /// </summary>
     /// <param name="packageName"></param>
     /// <returns></returns>
-    static string GetPackageVersion(string packageName)
+    private static string GetPackageVersion(string packageName)
     {
         var request = Client.List(true, true);
         while (!request.IsCompleted) { }
