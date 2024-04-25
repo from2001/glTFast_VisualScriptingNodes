@@ -15,9 +15,9 @@ class RestartUnityEditorAfterPackageInstallation
         string MyPackageName = MyPackageInfo.name;
         string MyPackageVersion = GetPackageVersion(MyPackageName);
 
-        if (EditorPrefs.GetString("VersionOf_" + MyPackageName, "") != MyPackageVersion)
+        if (EditorUserSettings.GetConfigValue("VersionOf_" + MyPackageName) != MyPackageVersion)
         {
-            EditorPrefs.SetString("VersionOf_" + MyPackageName, MyPackageVersion);
+            EditorUserSettings.SetConfigValue("VersionOf_" + MyPackageName, MyPackageVersion);
             if (EditorUtility.DisplayDialog("Restart Unity",
                 "You need to restart Unity to apply the new changes. Restart now?",
                 "Restart", "Later"))
