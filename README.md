@@ -71,7 +71,3 @@ Notice: Check "Coroutine" in the "On Start Event" triger node.
 - [OpenUPM](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/)
 
 ## Others
-
-### Vision OS Support
-
-Materials are generated with UnityGLTF routine with `UnityGLTF/PBRGraph` shader on ViisonOS until glTFast shaders support Vision OS.
