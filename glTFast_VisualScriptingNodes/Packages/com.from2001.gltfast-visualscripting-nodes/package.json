@@ -1,6 +1,6 @@
 {
   "name": "com.from2001.gltfast-visualscripting-nodes",
-  "version": "0.0.19",
+  "version": "0.0.21",
   "displayName": "glTFast Visual Scripting Nodes",
   "description": "Unity Visual Scripting node library for glTF",
   "unity": "2021.3",
