@@ -242,6 +242,7 @@ MonoBehaviour:
   - {fileID: -7234235598177322271}
   - {fileID: 6325389806635835018}
   - {fileID: 436119499236597266}
+  - {fileID: 2437467170669540631}
   ExportPlugins:
   - {fileID: 4059378199693908863}
   - {fileID: 8098727948804383306}
@@ -335,6 +336,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e63c00ddf0924f0c8bd05f7f16935dfe, type: 3}
   m_Name: LodsExport
+  m_EditorClassIdentifier: 
+--- !u!114 &2437467170669540631
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473c2b5b3de547139304b32beee641e9, type: 3}
+  m_Name: AnimationPointerImport
   m_EditorClassIdentifier: 
 --- !u!114 &2700322116147925521
 MonoBehaviour:

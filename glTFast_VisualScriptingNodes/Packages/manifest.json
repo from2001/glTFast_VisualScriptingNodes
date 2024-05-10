@@ -1,12 +1,16 @@
 {
   "dependencies": {
     "com.styly.webrequest-visualscripting-nodes": "0.0.6",
-    "com.unity.collab-proxy": "2.2.0",
+    "com.unity.cloud.draco.webgl-2022": "1.0.0",
+    "com.unity.cloud.ktx.webgl-2022": "1.0.1",
+    "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.1",
+    "com.unity.meshopt.decompress": "0.1.0-preview.5",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
-    "com.unity.visualscripting": "1.9.1",
+    "com.unity.visualscripting": "1.9.4",
+    "org.khronos.unitygltf": "2.10.2-rc",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
