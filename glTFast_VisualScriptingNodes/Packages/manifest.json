@@ -1,9 +1,7 @@
 {
   "dependencies": {
     "com.styly.webrequest-visualscripting-nodes": "0.0.6",
-    "com.unity.cloud.draco": "5.0.2",
     "com.unity.cloud.draco.webgl-2022": "1.0.0",
-    "com.unity.cloud.ktx": "3.3.0",
     "com.unity.cloud.ktx.webgl-2022": "1.0.1",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.1",
