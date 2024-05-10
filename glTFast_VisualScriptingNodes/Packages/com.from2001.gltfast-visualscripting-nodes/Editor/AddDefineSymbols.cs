@@ -9,6 +9,8 @@ class AddDefineSymbols
 {
     // Scripting Define Symbol list to add
     static readonly string[] symbolsToAdd = {
+            "UNITYGLTF_FORCE_DEFAULT_IMPORTER_ON",         // Enable UnityGLTF import
+            "GLTFAST_FORCE_DEFAULT_IMPORTER_OFF",          // Disable GLTFast import
             "UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER",    // Disable importer in UniVRM
             "UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER",     // Disable importer in UniVRM
         };
