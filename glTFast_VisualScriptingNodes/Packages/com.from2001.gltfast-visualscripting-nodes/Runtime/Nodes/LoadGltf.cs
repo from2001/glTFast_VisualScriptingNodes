@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using STYLY.Http;
 using STYLY.Http.Service;
+using UnityGLTF;
 
 namespace GltfastVisualScriptingNodes
 {
@@ -62,7 +63,49 @@ namespace GltfastVisualScriptingNodes
             yield return outputTrigger;
         }
 
+
+        /// <summary>
+        /// Load glTF/glb with URL using UnityGLTF
+        /// </summary>
+        /// <param name="URL"></param>
+        /// <param name="target"></param>
+        /// <param name="normalizescale"></param>
+        /// <returns></returns>
         private async UniTask<GameObject> LoadGltfWithURL(string URL, GameObject target = null, bool normalizescale = true)
+        {
+            // Create glTF GameObject
+            GameObject glTF = new("glTF");
+            var UnityGltfScript = glTF.AddComponent<GLTFComponent>();
+
+            // Set glTF loading parameters
+            UnityGltfScript.GLTFUri = URL;
+            UnityGltfScript.Multithreaded = true;
+            UnityGltfScript.UseStream = true;
+            UnityGltfScript.AppendStreamingAssets = false;
+            UnityGltfScript.PlayAnimationOnLoad = true;
+            UnityGltfScript.HideSceneObjDuringLoad = false;
+            UnityGltfScript.Factory = null;
+
+            // Load glTF/glb
+            await UnityGltfScript.Load();
+
+            // Adjust scale to 1 unit size
+            if (normalizescale) Utils.FitToUnitSize(glTF);
+
+            // Set glTF location to Target Game Object
+            if (target != null)
+            {
+                glTF.transform.SetParent(target.transform);
+                glTF.transform.localPosition = Vector3.zero;
+                glTF.transform.localRotation = Quaternion.identity;
+                glTF.transform.localScale = Vector3.one;
+            }
+
+            return glTF;
+        }
+
+        // This method is not used now.
+        private async UniTask<GameObject> LoadGltfWithURL_glTFast(string URL, GameObject target = null, bool normalizescale = true)
         {
             GameObject glTF = new("glTF"); // This is the parent object of the glTF instance. Always 1 unit size.
             GameObject gltfInstance = new("glTFast");
