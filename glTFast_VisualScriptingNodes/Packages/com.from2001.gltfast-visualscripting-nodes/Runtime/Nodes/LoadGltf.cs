@@ -78,7 +78,11 @@ namespace GltfastVisualScriptingNodes
                 if (httpResponse.IsSuccessful)
                 {
                     GlbBytes = httpResponse.Bytes;
-                    GLTFast.Materials.IMaterialGenerator materialGenerator = Utils.IsVisionOS() ? new PBRGraphMaterialGenerator(new MemoryStream(GlbBytes)) : null;
+
+                    // Use glTfast materials since PBRGraphMaterialGenerator is broken.
+                    // GLTFast.Materials.IMaterialGenerator materialGenerator = Utils.IsVisionOS() ? new PBRGraphMaterialGenerator(new MemoryStream(GlbBytes)) : null;
+                    GLTFast.Materials.IMaterialGenerator materialGenerator = null;
+
                     var gltfImport = new GltfImport(null, null, materialGenerator, null);
                     var instantiator = new GameObjectInstantiator(gltfImport, gltfInstance.transform);
 
