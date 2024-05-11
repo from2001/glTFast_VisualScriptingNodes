@@ -44,7 +44,7 @@ namespace GltfastVisualScriptingNodes
 
             glTF_URL = ValueInput<string>("glTF/glb URL", "");
             TargetGameobject = ValueInput<GameObject>("Target Game Object", null);
-            NormalizeScale = ValueInput<bool>("Normalize Scale", true);
+            NormalizeScale = ValueInput<bool>("Normalize Scale", false);
             result = ValueOutput<GameObject>("Game Object", (flow) => resultValue);
         }
 
