@@ -12,7 +12,7 @@
 - Load glTF/glb models with URL
 - File cache
 
-## Install Option A: via OpenUPM command-line interface
+## Install via OpenUPM command-line interface
 
 ```shell
 # Install openupm-cli
@@ -24,27 +24,6 @@ cd YOUR_UNITY_PROJECT_DIR
 # Install package: Use -f option to avoid install error  
 openupm add -f com.from2001.gltfast-visualscripting-nodes
 ```
-
-## Install Option B: via Unity package manager
-
-### 1. Setup scoped registories
-
-Open "Edit - Project Settings - Package Manager" on your Unity project.
-
-Add Scoped Registories and click "Apply".
-
-Name: `OpenUPM`
-URL: `https://package.openupm.com`
-Scopes:
-`com.cysharp.unitask`
-`com.from2001.gltfast-visualscripting-nodes`
-`com.openupm`
-
-![Project Settings](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/dd5a5f9c-47fc-421c-b262-c27702ce882b)
-
-### 2. Install glTFast Visual Scripting Node Package with Package Manager
-
-![Package Manager](https://github.com/from2001/glTFast_VisualScriptingNodes/assets/387880/73f12fe8-164a-4774-9e76-27771b447186)
 
 ## How to Use
 
