@@ -1,11 +1,10 @@
 using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using GLTFast;
-using UnityEngine.Networking;
 using System;
-using System.IO;
 using STYLY.Http;
 using STYLY.Http.Service;
 using UnityGLTF;
@@ -37,6 +36,9 @@ namespace GltfastVisualScriptingNodes
         public ValueOutput result;
 
         private GameObject resultValue;
+        private GameObject loadingIcon;
+        
+        private ThrobberRotator throbberRotator;
         protected override void Definition()
         {
             inputTrigger = ControlInputCoroutine("inputTrigger", Enter);
@@ -44,7 +46,7 @@ namespace GltfastVisualScriptingNodes
 
             glTF_URL = ValueInput<string>("glTF/glb URL", "");
             TargetGameobject = ValueInput<GameObject>("Target Game Object", null);
-            NormalizeScale = ValueInput<bool>("Normalize Scale", true);
+            NormalizeScale = ValueInput<bool>("Normalize Scale", false);
             result = ValueOutput<GameObject>("Game Object", (flow) => resultValue);
         }
 
@@ -54,14 +56,104 @@ namespace GltfastVisualScriptingNodes
             GameObject target = flow.GetValue<GameObject>(TargetGameobject);
             bool adjustScale = flow.GetValue<bool>(NormalizeScale);
             GameObject gltfInstance = null;
+
+            ShowLoadingIcon(target);
+            
             UniTask.Create(async () =>
             {
                 gltfInstance = await LoadGltfWithURL(url, target, adjustScale);
             }).Forget();
             yield return new WaitUntil(() => gltfInstance);
+
+            HideLoadingIcon();
+            
             resultValue = gltfInstance;
             yield return outputTrigger;
         }
+
+        /// <summary>
+        /// Takes care of the loading icon creation and calls the animation accordingly
+        /// </summary>
+        /// <param name="target"></param>
+        private void ShowLoadingIcon(GameObject target)
+        {
+            loadingIcon = new GameObject("LoadingIcon");
+            Canvas canvas = loadingIcon.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.WorldSpace;
+            CanvasScaler canvasScaler = loadingIcon.AddComponent<CanvasScaler>();
+            canvasScaler.dynamicPixelsPerUnit = 10;
+
+            // Add an Image component to serve as the loading icon
+            GameObject icon = new GameObject("Icon");
+            icon.transform.SetParent(loadingIcon.transform);
+            Image image = icon.AddComponent<Image>();
+
+            // Load the throbber sprite from Resources, the image file can be changed easily. 
+            Sprite throbberSprite = Resources.Load<Sprite>("throbber");
+            if (throbberSprite != null)
+            {
+                image.sprite = throbberSprite;
+            }
+            else
+            {
+                Debug.LogWarning("Throbber sprite not found in Resources/throbber");
+                image.color = Color.white; // Fallback color if the sprite is not found
+            }
+
+            // Set the size of the loading icon
+            RectTransform rectTransform = image.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(0.5f, 0.5f); // Set size of the icon in world units. I decided to put it in 0.5 so it is not intrusive
+
+            // Position the loading icon based on the target object
+            if (target != null)
+            {
+                // Calculate bounds of the target object
+                Bounds bounds = GetTargetBounds(target);
+                loadingIcon.transform.position = bounds.center;
+                rectTransform.anchoredPosition = Vector2.zero; // Center the icon
+            }
+
+            // Add ThrobberRotator component and start the throbber animation
+            throbberRotator = loadingIcon.AddComponent<ThrobberRotator>();
+            throbberRotator.Initialize(icon.transform);
+        }
+
+        /// <summary>
+        /// Receives the location of the target model to put the loading icon on top of it
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        private Bounds GetTargetBounds(GameObject target)
+        {
+            Renderer[] renderers = target.GetComponentsInChildren<Renderer>();
+            if (renderers.Length == 0)
+            {
+                return new Bounds(target.transform.position, Vector3.one);
+            }
+
+            Bounds bounds = renderers[0].bounds;
+            foreach (Renderer renderer in renderers)
+            {
+                bounds.Encapsulate(renderer.bounds);
+            }
+            return bounds;
+        }
+
+        /// <summary>
+        /// Hide the loading icon after the gltf is shown
+        /// </summary>
+        private void HideLoadingIcon()
+        {
+            if (loadingIcon != null)
+            {
+                if (throbberRotator != null)
+                {
+                    throbberRotator.StopRotation();
+                }
+                GameObject.Destroy(loadingIcon);
+            }
+        }
+
 
 
         /// <summary>
@@ -73,6 +165,9 @@ namespace GltfastVisualScriptingNodes
         /// <returns></returns>
         private async UniTask<GameObject> LoadGltfWithURL(string URL, GameObject target = null, bool normalizescale = true)
         {
+            // Load completed flag
+            bool loadCompleted = false;
+
             // Create glTF GameObject
             GameObject glTF = new("glTF");
             var UnityGltfScript = glTF.AddComponent<GLTFComponent>();
@@ -85,9 +180,10 @@ namespace GltfastVisualScriptingNodes
             UnityGltfScript.PlayAnimationOnLoad = true;
             UnityGltfScript.HideSceneObjDuringLoad = false;
             UnityGltfScript.Factory = null;
+            UnityGltfScript.onLoadComplete = () => loadCompleted = true;
 
-            // Load glTF/glb
-            await UnityGltfScript.Load();
+            // Wait until the glTF is loaded
+            await UniTask.WaitUntil(() => loadCompleted);
 
             // Adjust scale to 1 unit size
             if (normalizescale) Utils.FitToUnitSize(glTF);
