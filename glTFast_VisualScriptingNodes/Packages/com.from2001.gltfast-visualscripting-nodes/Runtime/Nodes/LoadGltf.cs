@@ -4,9 +4,7 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using GLTFast;
-using UnityEngine.Networking;
 using System;
-using System.IO;
 using STYLY.Http;
 using STYLY.Http.Service;
 using UnityGLTF;
@@ -167,6 +165,9 @@ namespace GltfastVisualScriptingNodes
         /// <returns></returns>
         private async UniTask<GameObject> LoadGltfWithURL(string URL, GameObject target = null, bool normalizescale = true)
         {
+            // Load completed flag
+            bool loadCompleted = false;
+
             // Create glTF GameObject
             GameObject glTF = new("glTF");
             var UnityGltfScript = glTF.AddComponent<GLTFComponent>();
@@ -179,9 +180,10 @@ namespace GltfastVisualScriptingNodes
             UnityGltfScript.PlayAnimationOnLoad = true;
             UnityGltfScript.HideSceneObjDuringLoad = false;
             UnityGltfScript.Factory = null;
+            UnityGltfScript.onLoadComplete = () => loadCompleted = true;
 
-            // Load glTF/glb
-            await UnityGltfScript.Load();
+            // Wait until the glTF is loaded
+            await UniTask.WaitUntil(() => loadCompleted);
 
             // Adjust scale to 1 unit size
             if (normalizescale) Utils.FitToUnitSize(glTF);
