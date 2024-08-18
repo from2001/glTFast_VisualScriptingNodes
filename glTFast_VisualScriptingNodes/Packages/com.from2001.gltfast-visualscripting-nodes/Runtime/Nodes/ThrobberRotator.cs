@@ -19,7 +19,7 @@ public class ThrobberRotator : MonoBehaviour
     {
         while (true)
         {
-            iconTransform.Rotate(Vector3.forward, -360 * Time.deltaTime);
+            iconTransform.Rotate(Vector3.down, -360 * Time.deltaTime);
             yield return null;
         }
     }
